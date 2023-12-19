@@ -7,8 +7,11 @@ Vous pouvez utiliser ce [GSheets](https://docs.google.com/spreadsheets/d/13Hw27U
 **Choix des méthodes à analyser** :
 
 - `METHOD_1` TEMPS
+getMetas; dur=4326.908112; desc="getMetas (200)",
 - `METHOD_2` TEMPS
+getReviews; dur=8245.657206; desc="getReviews (200)",
 - `METHOD_3` TEMPS
+getCheapestRoom; dur=15139.139652; desc="getCheapestRoom (200)"
 
 
 
