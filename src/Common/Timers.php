@@ -7,7 +7,6 @@ namespace App\Common;
  *
  * @example ```php
  * $timer = Timers::getInstance();
- *
  * $timerId = $timer->startTimer('myLabel');
  * myFunctionToMeasure();
  * $timer->endTimer('myLabel', $timerId);
