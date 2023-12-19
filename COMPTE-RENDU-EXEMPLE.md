@@ -26,6 +26,8 @@ getDB; dur= 1,28 s
 - **Après** TEMPS
 getDB; dur= 6,11 ms
 
+une amélioration d'environ 10 fois plus rapide
+
 ## Question 4 : Délégation des opérations de filtrage à la base de données
 
 **Temps de chargement globaux** 
