@@ -7,11 +7,11 @@ Vous pouvez utiliser ce [GSheets](https://docs.google.com/spreadsheets/d/13Hw27U
 **Choix des méthodes à analyser** :
 
 - `METHOD_1` TEMPS
-getMetas; dur=4326.908112; desc="getMetas (200)",
+getMetas; dur= 3,00 s 
 - `METHOD_2` TEMPS
-getReviews; dur=8245.657206; desc="getReviews (200)",
+getReviews; dur= 7,94 s
 - `METHOD_3` TEMPS
-getCheapestRoom; dur=15139.139652; desc="getCheapestRoom (200)"
+getCheapestRoom; dur= 14,52 s
 
 
 
@@ -22,9 +22,9 @@ getCheapestRoom; dur=15139.139652; desc="getCheapestRoom (200)"
 **Temps consommé par `getDB()`** 
 
 - **Avant** TEMPS
-
+getDB; dur= 1,28 s
 - **Après** TEMPS
-
+getDB; dur= 6,11 ms
 
 ## Question 4 : Délégation des opérations de filtrage à la base de données
 
