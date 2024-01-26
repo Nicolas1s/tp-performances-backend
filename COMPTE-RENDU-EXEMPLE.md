@@ -33,8 +33,10 @@ une amélioration d'environ 10 fois plus rapide
 **Temps de chargement globaux** 
 
 - **Avant** TEMPS
+dur = 28.28 s
 
 - **Après** TEMPS
+dur = 29.5 s
 
 
 #### Amélioration de la méthode `METHOD` et donc de la méthode `METHOD` :
@@ -43,12 +45,30 @@ une amélioration d'environ 10 fois plus rapide
 
 ```sql
 -- REQ SQL DE BASE
+getMeta = SELECT * FROM wp_usermeta
+
 ```
 
 - **Après** TEMPS
 
 ```sql
 -- NOUVELLE REQ SQL
+SELECT
+
+umeta_id AS metaid,
+user_id AS userid,
+meta_key AS metakey,
+metal_value AS metalvalue
+
+FROM
+    wp_usermeta AS user
+
+    INNER JOIN tp.wp_usermeta AS latData
+        ON latData.user_id = user.ID AND latData.meta_key = 'geo_lat'
+        
+    INNER JOIN tp.wp_usermeta AS lngData 
+        ON lngData.user_id = user.ID AND lngData.meta_key = 'geo_lng' 
+
 ```
 
 
@@ -59,12 +79,16 @@ une amélioration d'environ 10 fois plus rapide
 
 ```sql
 -- REQ SQL DE BASE
+getReviews = SELECT * FROM wp_posts, wp_postmeta WHERE wp_posts.post_author = :hotelId AND wp_posts.ID = wp_postmeta.post_id AND meta_key = 'rating' AND post_type = 'review'
+
 ```
 
 - **Après** TEMPS
 
 ```sql
 -- NOUVELLE REQ SQL
+SELECT
+
 ```
 
 
@@ -75,12 +99,16 @@ une amélioration d'environ 10 fois plus rapide
 
 ```sql
 -- REQ SQL DE BASE
+getCheapestRoom = SELECT * FROM wp_posts WHERE post_author = :hotelId AND post_type = 'room'
+
 ```
 
 - **Après** TEMPS
 
 ```sql
 -- NOUVELLE REQ SQL
+SELECT
+
 ```
 
 

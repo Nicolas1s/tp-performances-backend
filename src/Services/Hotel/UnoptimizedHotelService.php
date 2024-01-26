@@ -51,9 +51,15 @@ class UnoptimizedHotelService extends AbstractHotelService {
    * @return string|null
    */
   protected function getMeta ( int $userId, string $key ) : ?string {
+    
+    //$timer = Timers::getInstance();
+    //$timerId = $timer->startTimer('getMetaSQl');
+    
     $db = $this->getDB();
     $stmt = $db->prepare( "SELECT * FROM wp_usermeta" );
     $stmt->execute();
+
+    //$timer->endTimer('getMetaSQL', $timerId);
     
     $result = $stmt->fetchAll( PDO::FETCH_ASSOC );
     $output = null;
@@ -103,9 +109,15 @@ class UnoptimizedHotelService extends AbstractHotelService {
    */
   protected function getReviews ( HotelEntity $hotel ) : array {
     // Récupère tous les avis d'un hotel
+
+    //$timer = Timers::getInstance();
+    //$timerId = $timer->startTimer('getReviewsSQl');
+
     $stmt = $this->getDB()->prepare( "SELECT * FROM wp_posts, wp_postmeta WHERE wp_posts.post_author = :hotelId AND wp_posts.ID = wp_postmeta.post_id AND meta_key = 'rating' AND post_type = 'review'" );
     $stmt->execute( [ 'hotelId' => $hotel->getId() ] );
     $reviews = $stmt->fetchAll( PDO::FETCH_ASSOC );
+
+    //$timer->endTimer('getReviewsSQL', $timerId);
     
     // Sur les lignes, ne garde que la note de l'avis
     $reviews = array_map( function ( $review ) {
@@ -141,9 +153,15 @@ class UnoptimizedHotelService extends AbstractHotelService {
    */
   protected function getCheapestRoom ( HotelEntity $hotel, array $args = [] ) : RoomEntity {
     // On charge toutes les chambres de l'hôtel
+
+    //$timer = Timers::getInstance();
+    //$timerId = $timer->startTimer('getCheapestRoomSQL');
+
     $stmt = $this->getDB()->prepare( "SELECT * FROM wp_posts WHERE post_author = :hotelId AND post_type = 'room'" );
     $stmt->execute( [ 'hotelId' => $hotel->getId() ] );
     
+    //$timer->endTimer('getCheapestRoomSQL', $timerId);
+
     /**
      * On convertit les lignes en instances de chambres (au passage ça charge toutes les données).
      *
@@ -312,7 +330,7 @@ class UnoptimizedHotelService extends AbstractHotelService {
         // Des FilterException peuvent être déclenchées pour exclure certains hotels des résultats
       }
     }
-    
+
 
     return $results;
   }
